@@ -16,12 +16,58 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+body 
+{
+    background-image: url('../app/images/Desktop - 1.png');
+  height: 20rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.logo {
+  grid-column: 1 / 2;
+}
+
+.home-event {
+  text-align: center;
+}
+
+.login-button {
+  justify-self: flex-end;
+}
+
+.navbarul li img
+{
+  width: 8%;
+  border-radius: 0.7rem;
+  margin: 2rem;
+  cursor: pointer;
+}
+
+.ulNavbar
+{
+  display: flex;
+  justify-content: space-evenly;
+  color: rgba(151, 71, 255, 1);
+  margin: 1.5rem;
+  cursor: pointer;
+  margin-left: 30rem;
+}
+
+.ulNavbar li
+{
+  padding: 1rem; 
+}
+
+.login-button ul li
+{
+  margin: 2.5rem;
+  color: rgba(151, 71, 255, 1);
+  cursor: pointer;
 }

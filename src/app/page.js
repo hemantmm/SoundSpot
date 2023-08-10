@@ -7,8 +7,11 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <>
+    <section>
+<div className='tagline'>"Own a piece of music history with our exclusive NFTs. <br/>Elevate your music collection with our exclusive NFTs, showcasing the beauty and creativity of your favorite artists."</div>
+</section>
     {/* <div className='navbar'></div> */}
-    <nav class="layout">
+    {/* <nav class="layout">
   <div class="logo">
   <ul className='navbarul'>
         <li className=''>
@@ -43,6 +46,10 @@ export default function Home() {
       </ul>
   </div>
 </nav>
+
+<section>
+<div className='tagline'>"Own a piece of music history with our exclusive NFTs. <br/>Elevate your music collection with our exclusive NFTs, showcasing the beauty and creativity of your favorite artists."</div>
+</section> */}
 
     </>
   )

@@ -1,8 +1,8 @@
 const contracts = {
   31337: [
     {
-      name: "Anvil",
       chainId: "31337",
+      name: "localhost",
       contracts: {
         YourContract: {
           address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",

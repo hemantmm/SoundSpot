@@ -5,10 +5,12 @@
 :root,
 [data-theme] {
   background: hsl(var(--b2));
+  /* background-image: url('../public/Desktop\ -\ 1.png'); */
 }
 
 body {
   min-height: 100vh;
+  /* background-image: url('../app/images/Desktop - 1.png'); */
 }
 
 h1,
@@ -29,4 +31,23 @@ p {
 
 .btn.btn-ghost {
   @apply shadow-none;
+}
+
+.bgImage
+{
+  background-image: url('../public/Desktop\ -\ 1.png');
+}
+
+.tagline
+{
+  position: relative;
+  width: 15rem;
+  margin-right: 45rem;
+  margin-top: 10rem;
+   text-align: center;
+    color: #fff;
+    font-size: 1rem;
+     font-family: 'Azeret Mono';
+      font-weight: bold;
+       word-wrap: break-word;
 }

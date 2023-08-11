@@ -2,7 +2,8 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon, SparklesIcon, CalendarIcon, MusicalNoteIcon, CubeTransparentIcon } from "@heroicons/react/24/outline";
+// import {  } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -36,31 +37,32 @@ export const Header = () => {
 
   const navLinks = (
     <>
-      <li>
+      {/* <li>
         <NavLink href="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink href="/debug">
-          <BugAntIcon className="h-4 w-4" />
-          Debug Contracts
+      </li> */}
+      <li title="Event">
+        <NavLink href="/event">
+          <CalendarIcon className="h-4 w-4" />
+          {/* Event */}
         </NavLink>
       </li>
-      <li>
-        <NavLink href="/example-ui">
-          <SparklesIcon className="h-4 w-4" />
-          Example UI
+      <li title="Artist">
+        <NavLink href="/artist">
+          <MusicalNoteIcon className="h-4 w-4" />
+          {/* artist */}
         </NavLink>
       </li>
-      <li>
-        <NavLink href="/blockexplorer">
-          <MagnifyingGlassIcon className="h-4 w-4" />
-          Block Explorer
+      <li title="Subscription">
+        <NavLink href="/subscription">
+          <CubeTransparentIcon className="h-4 w-4" />
+          {/* subscri */}
         </NavLink>
       </li>
     </>
   );
 
   return (
+    <>
     <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
       <div className="navbar-start w-auto lg:w-1/2">
         <div className="lg:hidden dropdown" ref={burgerMenuRef}>
@@ -87,11 +89,11 @@ export const Header = () => {
         </div>
         <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6">
           <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
+            <Image alt="SE2 logo" className="cursor-pointer" fill src="/musiclogo.jpg" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-eth</span>
-            <span className="text-xs">Ethereum dev stack</span>
+            <span className="font-bold leading-tight">SoundSpot</span>
+            <span className="text-xs">Discover Live Music</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">{navLinks}</ul>
@@ -101,5 +103,6 @@ export const Header = () => {
         <FaucetButton />
       </div>
     </div>
+    </>
   );
 };

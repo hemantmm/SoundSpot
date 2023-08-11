@@ -57,7 +57,11 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div> */}
-        <div className='tagline'>"Own a piece of music history with our exclusive NFTs. <br/>Elevate your music collection with our exclusive NFTs, showcasing the beauty and creativity of your favorite artists."</div>
+        <div className="tagline">
+          "Own a piece of music history with our exclusive NFTs. <br />
+          Elevate your music collection with our exclusive NFTs, showcasing the beauty and creativity of your favorite
+          artists."
+        </div>
       </div>
     </>
   );

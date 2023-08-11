@@ -11,7 +11,7 @@ const ExampleUI: NextPage = () => {
         description="Example UI created with 🏗 Scaffold-ETH 2, showcasing some of its features."
       >
         {/* We are importing the font this way to lighten the size of SE2. */}
-         </MetaHeader>
+      </MetaHeader>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
         {/* <ContractInteraction />
         <ContractData /> */}

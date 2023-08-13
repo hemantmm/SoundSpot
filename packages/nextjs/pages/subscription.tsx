@@ -1,22 +1,31 @@
 import type { NextPage } from "next";
-import { MetaHeader } from "~~/components/MetaHeader";
-import { ContractData } from "~~/components/example-ui/ContractData";
-import { ContractInteraction } from "~~/components/example-ui/ContractInteraction";
+import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 
 const ExampleUI: NextPage = () => {
+
+  const subscriptionAmount = 599;
+
+
   return (
     <>
-      <MetaHeader
-        title="Example UI | Scaffold-ETH 2"
-        description="Example UI created with 🏗 Scaffold-ETH 2, showcasing some of its features."
-      >
-        {/* We are importing the font this way to lighten the size of SE2. */}
-      </MetaHeader>
-      <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
-        {/* <ContractInteraction />
-        <ContractData /> */}
-        <h2>hiiiii</h2>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h1 className="text-2xl font-semibold mb-4 text-purple-600">Subscription Plan</h1>
+        <p className="text-gray-600 mb-6">
+          Access premium content for just {subscriptionAmount} ETH.
+        </p>
+        <p className="text-center text-gray-600 mt-4">
+          Unlock the magic of Soundspot!
+        </p>
+        <p className="text-center text-gray-600">
+          It's a music NFT app where you can access the premium version.
+        </p>
+        <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md w-full">
+          Pay ${subscriptionAmount} with Metamask
+        </button>
       </div>
+    </div>
+
     </>
   );
 };

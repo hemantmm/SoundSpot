@@ -43,7 +43,22 @@ p {
   position: relative;
   width: 15rem;
   margin-right: 45rem;
-  margin-top: 10rem;
+  margin-top: 6rem;
+   text-align: center;
+    color: #fff;
+    font-size: 1rem;
+     font-family: 'Azeret Mono';
+      font-weight: bold;
+       word-wrap: break-word;
+}
+
+.tagline1
+{
+  position: relative;
+  width: 15rem;
+  margin-left: 40rem;
+  /* margin-bottom: 6rem; */
+  bottom: 9rem;
    text-align: center;
     color: #fff;
     font-size: 1rem;

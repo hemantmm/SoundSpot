@@ -4,14 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   Bars3Icon,
-  BugAntIcon,
   CalendarIcon,
   CubeTransparentIcon,
-  MagnifyingGlassIcon,
   MusicalNoteIcon,
-  SparklesIcon,
 } from "@heroicons/react/24/outline";
-// import {  } from "@heroicons/react/24/outline";
+
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -32,9 +29,6 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   );
 };
 
-/**
- * Site header
- */
 export const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -45,25 +39,19 @@ export const Header = () => {
 
   const navLinks = (
     <>
-      {/* <li>
-        <NavLink href="/">Home</NavLink>
-      </li> */}
       <li title="Event">
         <NavLink href="/event">
           <CalendarIcon className="h-4 w-4" />
-          {/* Event */}
         </NavLink>
       </li>
       <li title="Artist">
         <NavLink href="/artist">
           <MusicalNoteIcon className="h-4 w-4" />
-          {/* artist */}
         </NavLink>
       </li>
       <li title="Subscription">
         <NavLink href="/subscription">
           <CubeTransparentIcon className="h-4 w-4" />
-          {/* subscri */}
         </NavLink>
       </li>
     </>

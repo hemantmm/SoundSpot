@@ -8,3 +8,16 @@ Hardhat, Solidity, EtherJs
 Frontend:
 NextJs,Wagmi,Typescript,TailwindCss,RainbowKit
 ScaffoldEth2
+
+
+Deployment on Base Goerli:
+
+https://goerli.basescan.org/address/0x0A8748775b1A79Cd2C836AFCFbfe608FDAe6ECDA
+
+Deployment on Zora Goerli:
+
+https://testnet.explorer.zora.energy/address/0x0A8748775b1A79Cd2C836AFCFbfe608FDAe6ECDA
+
+Deployment on Optimism Goerli:
+
+https://goerli-optimism.etherscan.io/address/0x634290f6362afe9c4ace8b85168a419dd734dee2

@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body 
+{
+    background-image: url('../app/images/Desktop - 1.png');
+  height: 20rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.logo {
+  grid-column: 1 / 2;
+}
+
+.home-event {
+  text-align: center;
+}
+
+.login-button {
+  justify-self: flex-end;
+}
+
+.navbarul li img
+{
+  width: 8%;
+  border-radius: 0.7rem;
+  margin: 2rem;
+  cursor: pointer;
+}
+
+.ulNavbar
+{
+  display: flex;
+  justify-content: space-evenly;
+  color: rgba(151, 71, 255, 1);
+  margin: 1.5rem;
+  cursor: pointer;
+  margin-left: 30rem;
+}
+
+.ulNavbar li
+{
+  padding: 1rem; 
+}
+
+.login-button ul li
+{
+  margin: 2.5rem;
+  color: rgba(151, 71, 255, 1);
+  cursor: pointer;
+}
+
+.tagline
+{
+  position: relative;
+  width: 15rem;
+  margin-left: 20rem;
+  margin-top: 4rem;
+   text-align: center;
+    /* color: rgb(195, 0, 255);  */
+    color: #fff;
+    font-size: 1rem;
+     font-family: 'Azeret Mono';
+      font-weight: 800;
+       word-wrap: break-word;
+}
+
+.credit-card-form {
+  margin-bottom: 11%;
+  margin-left: 35%;
+  max-width: 400px;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgba(151, 71, 255, 1);;
+  text-align: center;
+  color: gold;
+  align-content: center;
+}
+
+.credit-card-form h2 {
+  margin-bottom: 10%;
+  font-size: 24px;
+}
+
+.credit-card-form .form-group {
+  margin-bottom: 15px;
+}
+
+.credit-card-form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.credit-card-form input[type="text"],
+.credit-card-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.credit-card-form .form-row {
+  display: flex;
+}
+
+
+.credit-card-form button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background-color: #585858;
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.credit-card-form button[type="submit"]:hover {
+  background-color: #bebebe;
+  color: #424242;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.credit-card-form button[type="submit"]:focus {
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+p {
+  color: white;
+  margin-top: 6%;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 45px;
+  font-size: 70%;
+  text-shadow: 0 0 5px #cacaca; 
+}

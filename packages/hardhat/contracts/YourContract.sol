@@ -1,87 +1,90 @@
 //SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+pragma solidity ^0.8.4;
 
-// Useful for debugging. Remove when deploying to a live network.
-import "hardhat/console.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-// Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
-// import "@openzeppelin/contracts/access/Ownable.sol";
+contract YourContract is Ownable,ERC721{
+using SafeMath for uint256;
+    struct Song{
+        uint256 songId;
+        address uploader;
+        string songURI;
+        bool isApproved;
+    }
 
-/**
- * A smart contract that allows changing a state variable of the contract and tracking the changes
- * It also allows the owner to withdraw the Ether in the contract
- * @author BuidlGuidl
- */
-contract YourContract {
-	// State Variables
-	address public immutable owner;
-	string public greeting = "Building Unstoppable Apps!!!";
-	bool public premium = false;
-	uint256 public totalCounter = 0;
-	mapping(address => uint) public userGreetingCounter;
-
-	// Events: a way to emit log statements from smart contract that can be listened to by external parties
-	event GreetingChange(
-		address indexed greetingSetter,
-		string newGreeting,
-		bool premium,
-		uint256 value
-	);
-
-	// Constructor: Called once on contract deployment
-	// Check packages/hardhat/deploy/00_deploy_your_contract.ts
-	constructor(address _owner) {
-		owner = _owner;
-	}
-
-	// Modifier: used to define a set of rules that must be met before or after a function is executed
-	// Check the withdraw() function
-	modifier isOwner() {
-		// msg.sender: predefined variable that represents address of the account that called the current function
-		require(msg.sender == owner, "Not the Owner");
-		_;
-	}
-
-	/**
-	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
-	 *
-	 * @param _newGreeting (string memory) - new greeting to save on the contract
-	 */
-	function setGreeting(string memory _newGreeting) public payable {
-		// Print data to the hardhat chain console. Remove when deploying to a live network.
-		console.log(
-			"Setting new greeting '%s' from %s",
-			_newGreeting,
-			msg.sender
-		);
-
-		// Change state variables
-		greeting = _newGreeting;
-		totalCounter += 1;
-		userGreetingCounter[msg.sender] += 1;
-
-		// msg.value: built-in global variable that represents the amount of ether sent with the transaction
-		if (msg.value > 0) {
-			premium = true;
-		} else {
-			premium = false;
-		}
-
-		// emit: keyword used to trigger an event
-		emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, 0);
-	}
-
-	/**
-	 * Function that allows the owner to withdraw all the Ether in the contract
-	 * The function can only be called by the owner of the contract as defined by the isOwner modifier
-	 */
-	function withdraw() public isOwner {
-		(bool success, ) = owner.call{ value: address(this).balance }("");
-		require(success, "Failed to send Ether");
-	}
-
-	/**
-	 * Function that allows the contract to receive ETH
-	 */
-	receive() external payable {}
+struct LoyaltyReward{
+    uint256 rewardId;
+    uint256 requiredPoints;
+    string rewardType;
 }
+
+    Song[] public songs;
+
+    mapping(address=>bool) public verifiedUsers;
+    mapping(address => bool) public subscribedUsers;
+    mapping(address=>uint256) public loyaltyPoints;
+    mapping(address=>uint256[]) public userNFTs;
+
+    LoyaltyReward[] public loyaltyRewards;
+
+    uint256 public subscriptionPrice=0.1 ether;
+
+    modifier onlyVerifiedUser(){
+        require(verifiedUsers[msg.sender],"Only verified can users can access this");
+        _;
+    }
+
+    modifier onlySubscribedUser(){
+        require(subscribedUsers[msg.sender],"Only subscribed users can access this.");
+        _;
+    }
+
+    constructor(string memory _name,string memory _symbol) ERC721(_name,_symbol){}
+
+    event SongUploaded(uint256 songId,address indexed uploader,string songURI);
+    event LoyaltyRewardClaimed(address indexed user,uint256 rewardId,string rewardType);
+
+    function subscribe() external payable{
+        require(msg.value==subscriptionPrice,"Incorrect subscription price");
+        subscribedUsers[msg.sender]=true;
+    }
+
+    function uploadSong(string memory _songURI) external onlyVerifiedUser{
+        songs.push(Song({songId:songs.length,uploader:msg.sender,songURI:_songURI,isApproved:false}));
+        emit SongUploaded(songs.length-1,msg.sender,_songURI);
+    }
+
+    function approveSong(uint256 _songId) external onlyOwner{
+        require(_songId<songs.length,"Invalid song ID");
+        songs[_songId].isApproved=true;
+    }
+
+    function addLoyaltyReward(uint256 _requiredPoints, string memory _rewardType) external onlyOwner {
+        loyaltyRewards.push(LoyaltyReward({ rewardId: loyaltyRewards.length, requiredPoints: _requiredPoints, rewardType: _rewardType }));
+    }
+
+    function claimLoyaltyReward(uint256 _rewardId) external onlySubscribedUser {
+        require(_rewardId < loyaltyRewards.length, "Invalid reward ID");
+        require(loyaltyPoints[msg.sender] >= loyaltyRewards[_rewardId].requiredPoints, "Insufficient loyalty points");
+
+        _mint(msg.sender, userNFTs[msg.sender].length);
+        userNFTs[msg.sender].push(userNFTs[msg.sender].length);
+        loyaltyPoints[msg.sender] = loyaltyPoints[msg.sender] - loyaltyRewards[_rewardId].requiredPoints;
+
+        emit LoyaltyRewardClaimed(msg.sender, _rewardId, loyaltyRewards[_rewardId].rewardType);
+    }
+
+    function addLoyaltyPoints(address _user, uint256 _points) public onlyOwner {
+        loyaltyPoints[_user] += _points;
+    }
+
+     function verifyUser(address _user) public onlyOwner {
+        verifiedUsers[_user] = true;
+    }
+
+
+}
+
+
